@@ -1,9 +1,14 @@
 package com.yyf.office.itext;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringBufferInputStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
 
 import javax.swing.text.rtf.RTFEditorKit;
@@ -15,19 +20,18 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class App {
 	public static void main(String[] args) throws DocumentException, IOException {
-		// step 1
-		Document document = new Document();
-		// step 2
-		PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("i://test.pdf"));
-		// step 3
-		document.open();
-		Charset charset = Charset.forName("iso-8859-1");
-		System.out.println(charset);
+		String pdfFile = "i://test.pdf";
+		String htmlFile = "i://a.html";
 
-		// step 4
-		InputStreamReader isr = new InputStreamReader(new FileInputStream("i://a.html"), "UTF-8");
-		XMLWorkerHelper.getInstance().parseXHtml(writer, document, isr);
-		// step 5
+		Document document = new Document();
+		PdfWriter pdfwriter = PdfWriter.getInstance(document, new FileOutputStream(pdfFile));
+		pdfwriter.setViewerPreferences(PdfWriter.HideToolbar);
+		document.open();
+		String str = "<h1>hello你好 啊</h1>132";
+		// html文件
+		 XMLWorkerHelper.getInstance().parseXHtml(pdfwriter, document, new FileInputStream(htmlFile),Charset.forName("UTF-8"));
+//		XMLWorkerHelper.getInstance().parseXHtml(pdfwriter, document, new ByteArrayInputStream(str.getBytes()),
+//				Charset.forName("UTF-8"));
 		document.close();
 
 		System.out.println("PDF Created!");
