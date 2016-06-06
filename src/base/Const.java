@@ -1,4 +1,4 @@
-package com.yyf.base;
+package base;
 /**
  * 
  * @author Yu Yufeng
