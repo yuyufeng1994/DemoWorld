@@ -1,4 +1,4 @@
-package java.util.RandomTest;
+package yyf.java.util.Random;
 
 import java.util.Random;
 

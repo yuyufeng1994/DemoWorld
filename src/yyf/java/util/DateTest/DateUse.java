@@ -1,4 +1,4 @@
-package java.util.DateTest;
+package yyf.java.util.DateTest;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
