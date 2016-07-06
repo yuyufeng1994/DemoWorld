@@ -1,4 +1,4 @@
-package commons.date;
+package java.util.DateTest;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
