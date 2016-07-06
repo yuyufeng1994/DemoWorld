@@ -10,7 +10,7 @@ class SubThread extends Thread {
 	@Override
 	public void run() {
 		for (int i = 0; i <= 100; i++) {
-			System.out.println("SubThread:"+i);
+			System.out.println(Thread.currentThread().getName()+" "+i);
 		}
 	}
 
@@ -20,10 +20,11 @@ public class TestThread {
 	public static void main(String[] args) {
 		//3.创建一个子类对象
 		SubThread st = new SubThread();
+		SubThread st2 = new SubThread();
 		//4.调用线程的start()，启动此线程，调用相应的run()方法
+		//5.一个线程只能执行一次start()
 		st.start();
-		for (int i = 0; i <= 100; i++) {
-			System.out.println("main:"+i);
-		}
+		st2.start();
+		
 	}
 }
