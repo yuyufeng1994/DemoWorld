@@ -1,34 +1,27 @@
-package yyf.javax.jms.activemq2;
+package yyf.javax.jms.activemq;
 
 import javax.jms.Destination;
-import javax.jms.TextMessage;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jms.core.JmsTemplate;
 
 /**
- * 消息接收方 User: liuwentao Time: 12-6-14 上午11:32
+ * 发送消息方 User: liuwentao Time: 12-6-14 上午11:29
  */
-public class MessageReciver {
+public class MessageSender extends Thread {
 	public static void main(String args[]) throws Exception {
 		String[] configLocations = new String[] { "activemq/applicationContext.xml" };
 		ApplicationContext context = new ClassPathXmlApplicationContext(configLocations);
-
 		JmsTemplate jmsTemplate = (JmsTemplate) context.getBean("jmsTemplate");
 		Destination destination = (Destination) context.getBean("destination");
-
-		TextMessage msg = null;
-		// 是否继续接收消息
-		boolean isContinue = true;
-		while (isContinue) {
-			msg = (TextMessage) jmsTemplate.receive(destination);
-			System.out.println("收到消息 :" + msg.getText());
-			if (msg.getText().equals("end")) {
-				isContinue = false;
-				System.out.println("收到退出消息，程序要退出！");
-			}
+		for (int i = 1; i <= 10; i++) {
+			System.out.println("发送 i=" + i);
+			// 消息产生者
+			MyMessageCreator myMessageCreator = new MyMessageCreator();
+			myMessageCreator.n = i;
+			jmsTemplate.send(destination, myMessageCreator);
+			sleep(500);// 10秒后发送下一条消息
 		}
-		System.out.println("程序退出了！");
 	}
 }

@@ -1,4 +1,4 @@
-package yyf.javax.jms.activemq2;
+package yyf.javax.jms.activemq;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
