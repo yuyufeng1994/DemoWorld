@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd  
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd  
+        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd  
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd  
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
+	default-lazy-init="true">
+
+
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<!-- property name="brokerURL" value="tcp://127.0.0.1:61616" / -->
+		<property name="brokerURL"
+			value="failover://(tcp://127.0.0.1:61616)?initialReconnectDelay=100" />
+		<property name="useAsyncSend" value="true" />
+		<property name="maxThreadPoolSize" value="50" />
+	</bean>
+
+	<!-- <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory"> 
+		<property name="connectionFactory" ref="connectionFactory" /> </bean> -->
+
+	<bean id="singleConnectionFactory"
+		class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory">
+			<ref local="connectionFactory" />
+		</property>
+	</bean>
+
+
+	<bean id="destinationQueue" class="org.apache.activemq.command.ActiveMQQueue">
+		<!-- 设置消息队列的名字 -->
+		<constructor-arg index="0" value="myqueue0" />
+	</bean>
+	<!-- 发送消息的目的地（一个队列） -->
+	<bean id="vehPassTopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<!-- 设置消息队列的名字 -->
+		<constructor-arg index="0" value="vehPass.messages" />
+	</bean>
+
+	<bean id="vehAlarmTopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<!-- 设置消息队列的名字 -->
+		<constructor-arg index="0" value="vehAlarm.messages" />
+	</bean>
+
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<!-- <property name="connectionFactory" ref="connectionFactory"/> -->
+		<property name="connectionFactory" ref="singleConnectionFactory" />
+		<!-- <property name="defaultDestination" ref="destination"/> -->
+		<!-- 区别它采用的模式为false是p2p为true是订阅 -->
+		<!-- <property name="pubSubDomain" value="true" /> -->
+	</bean>
+
+</beans>

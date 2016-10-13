@@ -5,4 +5,5 @@ USER_PREFERENCE=overrideGlobalPreferencestruedisableAllValidationfalseversion1.2
 eclipse.preferences.version=1
 override=true
 suspend=false
+vals/org.eclipse.jpt.jpa.core.jpaValidator/global=FF01
 vf.version=3
