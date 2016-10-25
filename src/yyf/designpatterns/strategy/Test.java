@@ -14,7 +14,6 @@ public class Test {
 
 		context.setStrategy(new StrategyB());
 		context.operate();
-
 	}
 
 }
