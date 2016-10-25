@@ -1,7 +1,11 @@
 package yyf.designpatterns.composite.leaf;
 
 import yyf.designpatterns.composite.comonpent.AbstractFile;
-
+/**
+ * 文本类型
+ * @author Yu Yufeng
+ *
+ */
 public class TextFile implements AbstractFile {
 	private String fileName;
 

@@ -1,7 +1,11 @@
 package yyf.designpatterns.composite.leaf;
 
 import yyf.designpatterns.composite.comonpent.AbstractFile;
-
+/**
+ * 音频类型
+ * @author Yu Yufeng
+ *
+ */
 public class VideoFile implements AbstractFile {
 	private String fileName;
 

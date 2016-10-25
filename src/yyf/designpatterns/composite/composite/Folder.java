@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import yyf.designpatterns.composite.comonpent.AbstractFile;
-
+/**
+ * 文件夹类型
+ * @author Yu Yufeng
+ *
+ */
 public class Folder implements AbstractFile {
 	private String fileName;
 	List<AbstractFile> list = new ArrayList<>();
@@ -27,7 +31,7 @@ public class Folder implements AbstractFile {
 	@Override
 	public void display(int depth) {
 		/**
-		 * 为了显示层次效果所以增加了depth
+		 * 为了显示层次效果所以增加了depth，递归显示层级
 		 */
 		for (int i = 0; i < depth; i++) {
 			System.out.print("  ");
