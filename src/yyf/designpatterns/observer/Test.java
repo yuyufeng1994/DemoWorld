@@ -1,5 +1,9 @@
-package yyf.designPattern.Observer;
-
+package yyf.designpatterns.observer;
+/**
+ * 观察者模式测试
+ * @author Yu Yufeng
+ *
+ */
 public class Test {
 	public static void main(String[] args) {
 		Watched girl = new ConcreteWatched();

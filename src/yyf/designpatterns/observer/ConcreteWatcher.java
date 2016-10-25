@@ -1,4 +1,4 @@
-package yyf.designPattern.Observer;
+package yyf.designpatterns.observer;
 
 public class ConcreteWatcher implements Watcher {
 
