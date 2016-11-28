@@ -6,14 +6,10 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring-version>4.2.3.RELEASE</spring-version>
+		<spring-version>3.2.4.RELEASE</spring-version>
 	</properties>
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-all</artifactId>
-			<version>5.14.1</version>
-		</dependency>
+		
 
 		<!-- spring依赖 -->
 		<dependency>
@@ -28,15 +24,15 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jms -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jms</artifactId>
 			<version>4.3.3.RELEASE</version>
-		</dependency>
+		</dependency> -->
 
 
 		<!-- office相关操作 utils.office.itextTest -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
 			<version>5.3.2</version>
@@ -70,7 +66,7 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>3.14</version>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 	<build>
 		<sourceDirectory>src</sourceDirectory>

@@ -13,3 +13,9 @@ public class Test {
 		proxy.operate();
 	}
 }
+/**
+ * 运行结果：
+ * before operate......
+ * real subject operate started......
+ * after operate......
+ */
