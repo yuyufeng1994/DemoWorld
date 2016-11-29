@@ -17,3 +17,8 @@ public class Test {
 	}
 
 }
+/**
+ * 运行结果
+ *  StrategyA.operate()
+ *	StrategyB.operate()
+ */

@@ -18,7 +18,7 @@ public class ProblemCreater {
 					int randomTime = Math.abs(random.nextInt()) % 20;
 					// System.out.println("这个任务需要解决时间为："+randomTime);
 					try {
-						Thread.sleep(randomTime * 1000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
