@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 public class TCPServerSelector {
 	// 缓冲区的长度
-	private static final int BUFSIZE = 256;
+	private static final int BUFSIZE = 10;
 	// select方法等待信道准备好的最长时间
 	private static final int TIMEOUT = 3000;
 
@@ -36,7 +36,7 @@ public class TCPServerSelector {
 			if (selector.select(TIMEOUT) == 0) {
 				// 在等待信道准备的同时，也可以异步地执行其他任务，
 				// 这里只是简单地打印"."
-				System.out.print(".");
+//				System.out.print(".");
 				continue;
 			}
 			// 获取准备好的信道所关联的Key集合的iterator实例

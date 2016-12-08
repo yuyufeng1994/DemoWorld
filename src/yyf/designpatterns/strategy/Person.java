@@ -1,9 +1,12 @@
 package yyf.designpatterns.strategy;
 
-public class Person implements Comparable<Person>{
-	
+import java.util.Comparator;
+
+public class Person implements Comparator<Person> {
+	public Person() {
+	}
+
 	public Person(int age) {
-		super();
 		this.age = age;
 	}
 
@@ -18,10 +21,8 @@ public class Person implements Comparable<Person>{
 	}
 
 	@Override
-	public int compareTo(Person o) {
-		// TODO Auto-generated method stub
-		return this.getAge() - o.getAge();
+	public int compare(Person o1, Person o2) {
+		return o1.getAge() - o2.getAge();
 	}
-	
 
 }

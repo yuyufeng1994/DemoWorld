@@ -41,14 +41,16 @@ public class TCPEchoClientNonblocking {
 				clntChan.write(writeBuf);
 			}
 			// 如果read（）接收到-1，表明服务端关闭，抛出异常
-			if ((bytesRcvd = clntChan.read(readBuf)) == -1) {
+			bytesRcvd = clntChan.read(readBuf);
+			System.out.println(bytesRcvd+" "+totalBytesRcvd);
+			if (bytesRcvd == -1) {
 				throw new SocketException("Connection closed prematurely");
 			}
 			// 计算接收到的总字节数
 			totalBytesRcvd += bytesRcvd;
 			// 在等待通信完成的过程中，程序可以执行其他任务，以体现非阻塞IO的异步特性
 			// 这里为了演示该方法的使用，同样只是一直打印"."
-			System.out.print(".");
+			// System.out.print(".");
 		}
 		// 打印出接收到的数据
 		System.out.println("Received: " + new String(readBuf.array(), 0, totalBytesRcvd));

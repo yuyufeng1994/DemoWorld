@@ -29,6 +29,7 @@ public class EchoSelectorProtocol implements TCPProtocol {
 		long bytesRead = clntChan.read(buf);
 		// 如果read（）方法返回-1，说明客户端关闭了连接，那么客户端已经接收到了与自己发送字节数相等的数据，可以安全地关闭
 		if (bytesRead == -1) {
+			System.out.println("客户端断开连接");
 			clntChan.close();
 		} else if (bytesRead > 0) {
 			// 如果缓冲区总读入了数据，则将该信道感兴趣的操作设置为为可读可写

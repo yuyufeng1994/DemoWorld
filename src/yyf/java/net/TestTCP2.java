@@ -87,7 +87,7 @@ public class TestTCP2 {
 				System.out.print(str);
 			}
 			os = s.getOutputStream();
-			os.write("我已收到你的情谊".getBytes());
+			os.write("我已收到你的消息".getBytes());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -10,9 +10,16 @@ public class Test2 {
 		list.add(new Person(1));
 		list.add(new Person(3));
 		list.add(new Person(2));
-		Collections.sort(list);
+		
+		list.sort(new Person());
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i).getAge());
 		}
 	}
 }
+/*
+ * 运行结果：
+ * 1
+ * 2
+ * 3
+ */
