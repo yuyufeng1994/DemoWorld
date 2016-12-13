@@ -1,4 +1,4 @@
-package yyf.redis;
+package yyf.Jedis.slaveof;
 
 import java.util.HashSet;
 
@@ -31,15 +31,13 @@ public class SentinelTest {
 		// 获取master的主机和端口
 		HostAndPort currentHostMaster = pool.getCurrentHostMaster();
 		System.out.println(currentHostMaster.getHost() + "--" + currentHostMaster.getPort());
-		
-		while (true) {
-			// 从Sentinel池中获取资源
-			Jedis jedis = pool.getResource();
-			// 打印资源中key为name的值
-			System.out.println(jedis.info("replication"));
-			// 关闭资源
-			jedis.close();
-		}
+
+		// 从Sentinel池中获取资源
+		Jedis jedis = pool.getResource();
+		// 打印资源中key为name的值
+		System.out.println(jedis.info("replication"));
+		// 关闭资源
+		jedis.close();
 	}
 
 }

@@ -1,4 +1,4 @@
-package yyf.redis;
+package yyf.Jedis;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -760,7 +760,7 @@ public class JedisUtil {
 		try {
 			jedis = getJedis();
 			// jedis.setex(key.getBytes(), seconds, serialize(obj));
-			jedis.setex(key.getBytes(), seconds, SerializationUtil.getStrFromObj(obj).getBytes());
+			jedis.setex(key.getBytes(), seconds, SerializeUtil.serialize(obj));
 		} catch (Exception e) {
 			returnBrokenJedis(jedis);
 		} finally {
@@ -786,8 +786,7 @@ public class JedisUtil {
 			if (value == null) {
 				return null;
 			} else {
-				return (T) SerializationUtil.getObjFromStr(key);
-				// return unserialize(value);
+				return (T) SerializeUtil.unserialize(value);
 			}
 		} catch (Exception e) {
 			returnBrokenJedis(jedis);
