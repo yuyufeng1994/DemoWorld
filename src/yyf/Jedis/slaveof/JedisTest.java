@@ -15,10 +15,10 @@ public class JedisTest {
 		// System.out.println(jedis.ping());
 		HashSet<String> sentinels = new HashSet<String>();
 		// 添加sentinel主机和端口
-		sentinels.add("192.168.21.129:26379");
-		sentinels.add("192.168.21.130:26379");
-//		sentinels.add("192.168.21.131:26379");
-		JedisSentinelPool pool = new JedisSentinelPool("mymaster", sentinels);
+//		sentinels.add("192.168.21.129:26379");
+//		sentinels.add("192.168.21.130:26379");
+		sentinels.add("192.168.21.131:26379");
+		JedisSentinelPool pool = new JedisSentinelPool("mymaster", sentinels,"12345");
 		
 //		HostAndPort currentHostMaster = pool.getCurrentHostMaster();
 //		System.out.println(currentHostMaster.getHost() + "--" + currentHostMaster.getPort());
