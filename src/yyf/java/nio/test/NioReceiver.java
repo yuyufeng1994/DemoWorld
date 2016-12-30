@@ -13,7 +13,7 @@ import java.util.Set;
 public class NioReceiver {
 	@SuppressWarnings("null")
 	public static void main(String[] args) throws Exception {
-		ByteBuffer echoBuffer = ByteBuffer.allocate(8);
+		ByteBuffer echoBuffer = ByteBuffer.allocate(1024);
 		ServerSocketChannel ssc = ServerSocketChannel.open();
 		Selector selector = Selector.open();
 		ssc.configureBlocking(false);
