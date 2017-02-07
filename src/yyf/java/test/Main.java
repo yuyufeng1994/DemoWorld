@@ -1,9 +1,9 @@
 package yyf.java.test;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
+		String str="sichuan-bus-secondCache-777";
+		System.out.println(str.substring(24));
 	}
 }

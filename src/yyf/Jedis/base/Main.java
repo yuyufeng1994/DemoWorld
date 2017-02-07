@@ -18,10 +18,9 @@ public class Main {
 		System.out.println(System.currentTimeMillis());
 		Jedis j = new Jedis("127.0.0.1", 6379);
 		j.auth("Bbkb_deve");
-
-		while (true) {
-			System.out.println(ai.incrementAndGet() + ": " + j.ping());
-		}
+//		while (true) {
+//			System.out.println(ai.incrementAndGet() + ": " + j.ping());
+//		}
 
 	}
 
