@@ -41,21 +41,19 @@ public class LockUtil {
 	 */
 	public static Boolean getLock(String uid, Integer expire) {
 		if (expire < 0) {
-            return false;
-        }
+			return false;
+		}
 		Long beginTime = System.currentTimeMillis();
 		do {
 			Jedis jedis = jedisPool.getResource();
-			
-			//防止程序出错设置键值不失效
-			if(jedis.ttl(PREFIX + uid) == -1){
+
+			// 防止程序出错设置键值不失效
+			if (jedis.ttl(PREFIX + uid) == -1) {
 				jedis.expire(PREFIX + uid, expire);
 			}
-			
+
 			Long res = jedis.incr(PREFIX + uid);
-			
-			
-			
+
 			if (res == 1) {
 				jedis.expire(PREFIX + uid, expire);
 
@@ -78,10 +76,12 @@ public class LockUtil {
 				}
 			}
 
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if (WAITTIME != 0) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 			System.out.print(".");
 		} while ((System.currentTimeMillis() - beginTime) < WAITTIME);
@@ -99,21 +99,19 @@ public class LockUtil {
 	 */
 	public static Boolean getLock(String uid, Integer expire, Integer timeout) {
 		if (expire < 0) {
-            return false;
-        }
+			return false;
+		}
 		Long beginTime = System.currentTimeMillis();
 		do {
 			Jedis jedis = jedisPool.getResource();
-			
-			//防止程序出错设置键值不失效
-			if(jedis.ttl(PREFIX + uid) == -1){
+
+			// 防止程序出错设置键值不失效
+			if (jedis.ttl(PREFIX + uid) == -1) {
 				jedis.expire(PREFIX + uid, expire);
 			}
-			
+
 			Long res = jedis.incr(PREFIX + uid);
-			
-			
-			
+
 			if (res == 1) {
 				jedis.expire(PREFIX + uid, expire);
 
@@ -135,11 +133,12 @@ public class LockUtil {
 					e1.printStackTrace();
 				}
 			}
-
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
+			if (timeout != 0) {
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 			System.out.print(".");
 		} while ((System.currentTimeMillis() - beginTime) < timeout);
@@ -174,7 +173,7 @@ public class LockUtil {
 
 		AtomicInteger ai = new AtomicInteger(1);
 		AtomicInteger count = new AtomicInteger(0);
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 30; i++) {
 			new Thread() {
 				@Override
 				public void run() {
@@ -183,16 +182,16 @@ public class LockUtil {
 					System.out.println(uid + "取锁结果：" + lock);
 					if (lock) {
 						// dosomething..
-						 count.incrementAndGet();
+						count.incrementAndGet();
 					}
-					System.out.println("当前获取锁的数量："+count);
+					System.out.println("当前获取锁的数量：" + count);
 				}
 			}.start();
 		}
 
 		// 手动解锁测试,超时测试
-		//Boolean lock = LockUtil.getLock("testReturnKey", 1);
-		//System.out.println("testReturnKey" + "取锁结果：" + lock);
+		// Boolean lock = LockUtil.getLock("testReturnKey", 1);
+		// System.out.println("testReturnKey" + "取锁结果：" + lock);
 		// LockUtil.returnLock("testReturnKey");
 
 	}
