@@ -59,4 +59,13 @@ public class ConsistentHash<C, S> {
 		h ^= (h >>> 20) ^ (h >>> 12);
 		return h ^ (h >>> 7) ^ (h >>> 4);
 	}
+	
+
+	public static void main(String[] args) {
+		ConsistentHash<String, String> ch = new ConsistentHash<String, String>();
+		ch.add("server1");
+		ch.add("server2");
+		ch.add("server3");
+		System.out.println(ch.get("server1"));
+	}
 }
