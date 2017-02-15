@@ -13,10 +13,13 @@ public class Test {
 		map.put("k23", "v23");
 		map.put("k4", "v4");
 		map.put("k41", "v41");
-		map.put("k5", "v5");
+		map.put("k5", "value5");
 		map.put("kabc", "vabc");
 		map.put("k4", "v5");
 		map.printKVs();
+
+		System.out.println("##" + map.get("k5"));
+		System.out.println("##" + map.get("k6"));
 
 		// System.out.println(hash("dasd"));
 

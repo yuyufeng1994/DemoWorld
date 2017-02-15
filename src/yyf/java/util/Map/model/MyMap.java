@@ -11,17 +11,56 @@ package yyf.java.util.Map.model;
 public class MyMap<K, V> {
 	static final int ARRAYMAX = 10;
 
+	/**
+	 * 构造函数初始化数组
+	 */
 	public MyMap() {
 		table = new Node[ARRAYMAX];
 	}
 
+	/**
+	 * 数组
+	 */
 	Node<K, V>[] table;
 
+	/**
+	 * 获取key的hash值
+	 * 
+	 * @param key
+	 * @return
+	 */
 	static final int hash(Object key) {
 		int h;
 		return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
 	}
 
+	/**
+	 * 根据key获取value
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public V get(Object key) {
+		int index = hash(key) % ARRAYMAX;
+		Node<K, V> p = table[index];
+		while (p != null) {
+			if (p.key.equals(key)) {
+				break;
+			}
+			p = p.next;
+		}
+		if (p == null) {
+			return null;
+		}
+		return p.value;
+	}
+
+	/**
+	 * put key-vlaue
+	 * 
+	 * @param key
+	 * @param value
+	 */
 	public void put(K key, V value) {
 		Node<K, V> p, q;
 		int index = hash(key) % ARRAYMAX;
@@ -50,10 +89,9 @@ public class MyMap<K, V> {
 		}
 	}
 
-	public V get(Object key) {
-		return null;
-	}
-
+	/**
+	 * 打印所有key-value
+	 */
 	public void printKVs() {
 		Node<K, V> p;
 		for (int i = 0; i < ARRAYMAX; i++) {
@@ -64,6 +102,16 @@ public class MyMap<K, V> {
 				p = p.next;
 			}
 		}
+	}
+
+	/**
+	 * 删除key-value
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public V remove(Object key) {
+		return null;
 	}
 
 }
