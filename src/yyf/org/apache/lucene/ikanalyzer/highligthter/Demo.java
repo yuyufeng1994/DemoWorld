@@ -3,6 +3,7 @@ package yyf.org.apache.lucene.ikanalyzer.highligthter;
 import java.io.IOException;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.StringField;
@@ -90,13 +91,13 @@ public class Demo {
 				Document targetDoc = isearcher.doc(scoreDocs[i].doc);
 				String res = "null";
 				// System.out.println(targetDoc.getField(fieldName).stringValue());
+				TokenStream token = analyzer.tokenStream(fieldName, targetDoc.getField(fieldName).stringValue());
 				try {
-					res = highlighter.getBestFragment(analyzer, fieldName, targetDoc.getField(fieldName).stringValue());
+					res = highlighter.getBestFragment(token, targetDoc.getField(fieldName).stringValue());
 				} catch (InvalidTokenOffsetsException e) {
 					e.printStackTrace();
 				}
 				System.out.println(res);
-
 			}
 
 		} catch (CorruptIndexException e) {
