@@ -15,11 +15,13 @@ public class Test {
 		map.put("k41", "v41");
 		map.put("k5", "value5");
 		map.put("kabc", "vabc");
-		map.put("k4", "v5");
+		map.put("k4", "v5");// 塞入相同的key，则覆盖
+		System.out.println("删除k22: "+map.remove("k22"));
+		System.out.println("删除k3: "+map.remove("k3"));
 		map.printKVs();
 
-		System.out.println("##" + map.get("k5"));
-		System.out.println("##" + map.get("k6"));
+		System.out.println("##获取key：k4 " + map.get("k4"));
+		System.out.println("##获取key：k6 " + map.get("k6"));
 
 		// System.out.println(hash("dasd"));
 

@@ -15,12 +15,17 @@ public class Main {
 		config.setMaxIdle(5);
 		config.setMaxWaitMillis(1000);
 		config.setTestOnBorrow(false);
-		System.out.println(System.currentTimeMillis());
 		Jedis j = new Jedis("127.0.0.1", 6379);
 		j.auth("Bbkb_deve");
 //		while (true) {
 //			System.out.println(ai.incrementAndGet() + ": " + j.ping());
 //		}
+		String key="mykey";
+		byte[] value = j.get(key.getBytes());
+		if (value == null) {
+			System.out.println("enter null");
+			
+		}
 
 	}
 

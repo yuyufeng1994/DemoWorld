@@ -1,20 +1,20 @@
 package yyf.java.test;
 
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
-		Aob a = new Aob();
-		Aob b = new Aob();
-		String c = "abc";
-		System.out.println(Integer.toHexString(a.hashCode()));
-		System.out.println(Integer.toHexString(b.hashCode()));
-		System.out.println(Integer.toHexString(c.hashCode()));
-		System.out.println(Integer.toHexString("abc".hashCode()));
-		
+		String no="1,2,3";
+		for(String n:no.split(",")){
+			System.out.println(n);
+		}
+		List<String> list = new ArrayList<String>();
+
 	}
 }
-class Aob{
+
+class Aob {
 	private String name;
 
 	public String getName() {
@@ -23,6 +23,19 @@ class Aob{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+}
+
+class Bob extends Aob{
+	private String age;
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
 	}
 	
 }
